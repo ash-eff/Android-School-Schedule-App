@@ -15,6 +15,12 @@ namespace c971
     {
         //public static AdoNetDatabaseService Database { get; private set; }
         public static string dbPath;
+        public static Color DeleteColor = Color.FromHex("#a0615f");
+        public static Color EditColor = Color.FromHex("#5F9EA0");
+        public static Color AddColor = Color.FromHex("#3a7f98");
+        public static Color Background = Color.FromHex("#ece6df");
+        public static Color ContainerColor = Color.FromHex("#e2d9cf");
+
 
         public App(string completePath)
         {
@@ -24,7 +30,7 @@ namespace c971
             var navPage = new NavigationPage(dashBoard);
             MainPage = navPage;
             dbPath = completePath;
-            
+
             //AdoNetDatabaseService.InitializeDatabase();
         }
     }

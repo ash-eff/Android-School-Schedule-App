@@ -1,6 +1,8 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="c971.Views.AddTerm">
+             xmlns:app="clr-namespace:c971" 
+             x:Class="c971.Views.AddTerm"
+             BackgroundColor="{x:Static app:App.Background}">
     <ContentPage.Content>
         <StackLayout Margin="10" Spacing="1">
             <Label Text="Add Term"
@@ -25,7 +27,7 @@
 
                 <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
 
-                <Button Text="Save" Clicked="OnSaveClicked" />
+                <Button Text="Save Term" Clicked="OnSaveClicked" BackgroundColor="{x:Static app:App.AddColor}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

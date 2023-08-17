@@ -1,9 +1,13 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="c971.Views.TermDetails">
+             xmlns:app="clr-namespace:c971" 
+             x:Class="c971.Views.TermDetails"
+             BackgroundColor="{x:Static app:App.Background}">
     <ContentPage.Content>
-        <ScrollView x:Name="scroller" VerticalOptions="FillAndExpand">
+        <StackLayout>
+        <ScrollView x:Name="scroller" VerticalOptions="FillAndExpand" >
             <StackLayout Margin="0" Spacing="1">
+
                 <Label Text="Term Details"
                        FontSize="40"
                        FontAttributes="Bold"
@@ -32,45 +36,49 @@
                     <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
                 </StackLayout>
 
-                <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+                <Frame BorderColor="Black" CornerRadius="5" Padding="10" Margin="10" BackgroundColor="{x:Static app:App.ContainerColor}">
+                    <StackLayout>
+                        <Label Text="Available Courses"
+                               FontSize="15"
+                               HorizontalOptions="Center" 
+                               TextColor="Black"/>
 
-                <Label Text="Available Courses"
-                   FontSize="15"
-                   HorizontalOptions="Center" 
-                   TextColor="Black"/>
+                        <StackLayout>
+                            <BindableLayout.ItemsSource>
+                                <Binding Path="coursesList" />
+                            </BindableLayout.ItemsSource>
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BorderColor="Black" CornerRadius="5" Padding="5" Margin="5">
+                                        <StackLayout>
+                                            <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="40"/>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                                <Label Text="Start: " VerticalTextAlignment="Center" HeightRequest="30"/>
+                                                <Label Text="{Binding StartDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
+                                                <Label Text=" - " VerticalTextAlignment="Center" HeightRequest="30"/>
+                                                <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnCourseTapped" CommandParameter="{Binding .}" />
+                                        </Frame.GestureRecognizers>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                        <Button Text="Add Course" Clicked="OnAddCourseClicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White"/>
+                    </StackLayout>
+                </Frame>
 
-                <StackLayout>
-                    <BindableLayout.ItemsSource>
-                        <Binding Path="coursesList" />
-                    </BindableLayout.ItemsSource>
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Frame BorderColor="Black" CornerRadius="5" Padding="5" Margin="5">
-                                <StackLayout>
-                                    <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="40"/>
-                                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                        <Label Text="Start: " VerticalTextAlignment="Center" HeightRequest="30"/>
-                                        <Label Text="{Binding StartDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
-                                        <Label Text=" - " VerticalTextAlignment="Center" HeightRequest="30"/>
-                                        <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
-                                    </StackLayout>
-                                </StackLayout>
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnCourseTapped" CommandParameter="{Binding .}" />
-                                </Frame.GestureRecognizers>
-                            </Frame>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
 
-                <!-- Line separator -->
-                <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
-
-                <Button Text="Add Course" Clicked="OnAddCourseClicked" />
-                <Button Text="Edit" Clicked="OnEditClicked" />
-                <Button Text="Delete" Clicked="OnDeleteClicked" />
 
             </StackLayout>
         </ScrollView>
+            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+
+
+            <Button Text="Edit Term" Clicked="OnEditClicked" BackgroundColor="{x:Static app:App.EditColor}" TextColor="White"/>
+            <Button Text="Delete Term" Clicked="OnDeleteClicked" BackgroundColor="{x:Static app:App.DeleteColor}" TextColor="White"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

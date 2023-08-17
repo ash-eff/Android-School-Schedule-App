@@ -1,6 +1,8 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="c971.Views.AddAssessment">
+             xmlns:app="clr-namespace:c971" 
+             x:Class="c971.Views.AddAssessment"
+             BackgroundColor="{x:Static app:App.Background}">
     <ContentPage.Content>
         <StackLayout Margin="10" Spacing="1">
             <Label Text="Add Assessment"
@@ -21,7 +23,7 @@
                 <Label Text="End Date:" FontSize="16" />
                 <DatePicker x:Name="assessmentEndDatePicker" HeightRequest="40" />
 
-                <Button Text="Save" Clicked="OnSaveAssessmentClicked" />
+                <Button Text="Save Assessment" Clicked="OnSaveAssessmentClicked" BackgroundColor="{x:Static app:App.AddColor}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

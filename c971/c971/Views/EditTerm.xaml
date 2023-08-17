@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="c971.Views.EditTerm">
+             xmlns:app="clr-namespace:c971" 
+             x:Class="c971.Views.EditTerm"
+             BackgroundColor="{x:Static app:App.Background}">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Edit Term"
@@ -19,7 +21,7 @@
             <Label Text="End Date:" FontSize="16" />
             <DatePicker x:Name="datePickerEndDate" />
 
-            <Button Text="Save" Clicked="OnSaveClicked" />
+            <Button Text="Save Term" Clicked="OnSaveClicked" BackgroundColor="{x:Static app:App.AddColor}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

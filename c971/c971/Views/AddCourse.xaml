@@ -1,6 +1,8 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="c971.Views.AddCourse">
+             xmlns:app="clr-namespace:c971" 
+             x:Class="c971.Views.AddCourse"
+             BackgroundColor="{x:Static app:App.Background}">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="10" Spacing="1">
@@ -49,7 +51,7 @@
                     <!-- Line separator -->
                     <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
 
-                    <Button Text="Save" Clicked="OnSaveCourseClicked" />
+                    <Button Text="Save Course" Clicked="OnSaveCourseClicked" BackgroundColor="{x:Static app:App.AddColor}"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

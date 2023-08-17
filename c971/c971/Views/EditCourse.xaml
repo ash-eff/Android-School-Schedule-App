@@ -1,12 +1,18 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="c971.Views.EditCourse">
+             xmlns:app="clr-namespace:c971" 
+             x:Class="c971.Views.EditCourse"
+             BackgroundColor="{x:Static app:App.Background}">
     <ContentPage.Resources>
         <Style x:Key="DropdownPickerStyle" TargetType="Picker">
             <Setter Property="BackgroundColor" Value="White" />
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                
+
         <StackLayout>
             <Label Text="Edit Course"
                    FontSize="30"
@@ -46,7 +52,12 @@
             <Label Text="Instructor Email:" FontSize="16" />
             <Entry x:Name="editedEmailEntry" />
 
-            <Button Text="Save" Clicked="OnSaveClicked" />
+            
+        </StackLayout>
+
+            </ScrollView>
+            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+            <Button Text="Save Course" Clicked="OnSaveClicked" BackgroundColor="{x:Static app:App.AddColor}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
