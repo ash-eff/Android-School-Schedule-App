@@ -15,23 +15,19 @@ namespace c971.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CourseDetails : ContentPage
     {
-        public List<Assessment> assessmentList = new List<Assessment>();
-
-        public Course SelectedCourse { get; set; }
+        public CourseViewModel ViewModel { get; set; }
         public CourseDetails(Course course)
         {
             InitializeComponent();
-            SelectedCourse = course;
-            BindingContext = this;
+            ViewModel = new CourseViewModel(course);
+            BindingContext = ViewModel;
         }
 
-        private async void OnAssessmentSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void OnAssessmentTapped(object sender, EventArgs e)
         {
-            if (e.SelectedItem is Assessment selectedAssessment && selectedAssessment != null)
+            if (e is TappedEventArgs tappedEventArgs && tappedEventArgs.Parameter is Assessment selectedAssessment)
             {
-                Console.WriteLine("selected assessment name is " + selectedAssessment.Name);
                 var assessmentDetailsPage = new AssessmentDetails(selectedAssessment);
-
                 await Navigation.PushAsync(assessmentDetailsPage);
             }
         }
@@ -40,22 +36,22 @@ namespace c971.Views
         {
             EditCourseViewModel editTermViewModel = new EditCourseViewModel
             {
-                SelectedCourse = SelectedCourse,
-                EditedCourseName = SelectedCourse.Name,
-                EditedStartDate = SelectedCourse.StartDate,
-                EditedEndDate = SelectedCourse.EndDate,
-                EditedStatus = SelectedCourse.CourseStatus,
-                EditedInstructorName = SelectedCourse.InstructorName,
-                EditedInstructorPhone = SelectedCourse.InstructorPhone,
-                EditedInstructorEmail = SelectedCourse.InstructorEmail
+                SelectedCourse = ViewModel.SelectedCourse,
+                EditedCourseName = ViewModel.CourseName,
+                EditedStartDate = ViewModel.StartDate,
+                EditedEndDate = ViewModel.EndDate,
+                EditedStatus = ViewModel.Status,
+                EditedInstructorName = ViewModel.InstructorName,
+                EditedInstructorPhone = ViewModel.InstructorPhone,
+                EditedInstructorEmail = ViewModel.InstructorEmail
             };
-
+            
             await Navigation.PushAsync(new EditCourse(editTermViewModel));
         }
 
         private async void OnAddAssessmentClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddAssessment(SelectedCourse));
+            await Navigation.PushAsync(new AddAssessment(ViewModel.SelectedCourse));
         }
 
         private async void OnDeleteClicked(object sender, EventArgs e)
@@ -68,16 +64,26 @@ namespace c971.Views
             else
             {
                 // Navigate back to the Dashboard page
-                AdoNetDatabaseService.RemoveCourse(SelectedCourse);
+                AdoNetDatabaseService.RemoveCourse(ViewModel.SelectedCourse);
                 await Navigation.PopAsync();
             }
         }
 
         protected override void OnAppearing()
         {
-            //AdoNetDatabaseService.TableInformation();
-            assessmentList = AdoNetDatabaseService.GetCourseTableAsListForCourse(SelectedCourse);
-            listView.ItemsSource = assessmentList;
+            var newAssessmentList = AdoNetDatabaseService.GetAssessmentTableAsListForCourse(ViewModel.SelectedCourse);
+            ViewModel.Assessments.Clear();
+            foreach (Assessment assessment in newAssessmentList)
+            {
+                ViewModel.Assessments.Add(assessment);
+            }
+
+            if (scroller != null)
+            {
+                scroller.ScrollToAsync(0, 0, false);
+            }
+
+
             base.OnAppearing();
         }
     }

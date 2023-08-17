@@ -80,6 +80,11 @@ namespace c971.Views
                 coursesList.Add(course);
             }
 
+            if (scroller != null)
+            {
+                scroller.ScrollToAsync(0, 0, false);
+            }
+
             base.OnAppearing();
         }
     }

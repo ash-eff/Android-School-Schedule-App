@@ -143,7 +143,7 @@ namespace c971.Services
             }
         }
 
-        public static List<Assessment> GetCourseTableAsListForCourse(Course course)
+        public static List<Assessment> GetAssessmentTableAsListForCourse(Course course)
         {
             if (course == null)
             {

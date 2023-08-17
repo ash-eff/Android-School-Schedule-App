@@ -1,37 +1,38 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:c971.Models"
+             xmlns:local="clr-namespace:c971.ViewModels"
              x:Class="c971.Views.Dashboard">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <local:IsNotNullConverter x:Key="IsNotNullConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
+    <ContentPage.BindingContext>
+        <local:DashboardViewModel />
+    </ContentPage.BindingContext>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Term Tracker"
+        
+        <ScrollView x:Name="scroller" VerticalOptions="FillAndExpand">
+            <StackLayout Margin="0" Spacing="1">
+                <Label Text="Term Tracker"
                    FontSize="40"
                    FontAttributes="Bold"
                    HorizontalOptions="Center" 
                    TextColor="Black"/>
-            <Label Text="Click a term to View/Edit/Delete"
+                <Label Text="Click a term to View/Edit/Delete"
                    FontSize="15"
                    HorizontalOptions="Center" 
                    TextColor="Black"/>
 
-            <ListView x:Name="listView"
-                      ItemsSource="{Binding AcademicTerms}"
-                      SelectionMode="Single"
-                      SelectedItem="{Binding SelectedTerm, Mode=TwoWay}"
-                      ItemSelected="OnTermSelected"
-                      RowHeight="100">
-            
+                <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+                <Label Text="Available Terms"
+                   FontSize="15"
+                   HorizontalOptions="Center" 
+                   TextColor="Black"/>
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
+                <StackLayout>
+                    <BindableLayout.ItemsSource>
+                        <Binding Path="AcademicTerms" />
+                    </BindableLayout.ItemsSource>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
                             <Frame BorderColor="Black" CornerRadius="5" Padding="5" Margin="5">
                                 <StackLayout>
                                     <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="40"/>
@@ -42,16 +43,19 @@
                                         <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
                                     </StackLayout>
                                 </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTermTapped" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
                             </Frame>
-                        </ViewCell>
-                    </DataTemplate>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
 
+                <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
 
+                <Button Text="Add Term" Clicked="OnAddTerm_Clicked" />
 
-                </ListView.ItemTemplate>
-            </ListView>
-
-            <Button Text="Add Term" Clicked="OnAddTerm_Clicked" />
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

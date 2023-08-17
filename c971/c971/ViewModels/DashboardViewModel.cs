@@ -9,7 +9,6 @@ namespace c971.ViewModels
     class DashboardViewModel : BaseViewModel
     {
         public ObservableCollection<AcademicTerm> AcademicTerms { get; set; }
-        //public AcademicTerm SelectedTerm { get; set; }
 
         private AcademicTerm _selectedTerm;
         public AcademicTerm SelectedTerm

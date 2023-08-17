@@ -37,7 +37,7 @@ namespace c971.Views
 
             await DisplayAlert("Success", "Term saved successfully!", "OK");
 
-            await Navigation.PopAsync();
+            await Navigation.PopToRootAsync();
         }
     }
 }

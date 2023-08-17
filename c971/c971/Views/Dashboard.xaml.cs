@@ -5,6 +5,7 @@ using Plugin.LocalNotifications;
 //using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
 
@@ -12,7 +13,6 @@ namespace c971.Views
 {
     public partial class Dashboard : ContentPage
     {
-        public List<AcademicTerm> termsList = new List<AcademicTerm>();
         public List<Assessment> assessmentsList = new List<Assessment>();
         public AcademicTermViewModel ViewModel { get; set; }
 
@@ -33,27 +33,33 @@ namespace c971.Views
             await Navigation.PushAsync(new AddTerm());
         }
 
-        private async void OnTermSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void OnTermTapped(object sender, EventArgs e)
         {
-            if (e.SelectedItem is AcademicTerm selectedTerm && selectedTerm != null)
+            if (e is TappedEventArgs tappedEventArgs && tappedEventArgs.Parameter is AcademicTerm selectedTerm)
             {
                 var termDetailsPage = new TermDetails(selectedTerm);
-
                 await Navigation.PushAsync(termDetailsPage);
             }
         }
 
         protected override void OnAppearing()
         {
-            // get academic table as list
-            termsList = AdoNetDatabaseService.GetAcademicTermsTableAsList();
-            listView.ItemsSource = termsList;
-            base.OnAppearing();
-        }
+            var newTermList = AdoNetDatabaseService.GetAcademicTermsTableAsList();
+            ViewModel.AcademicTerms.Clear();
+            foreach (AcademicTerm term  in newTermList)
+            {
+                ViewModel.AcademicTerms.Add(term);
+                Console.WriteLine("Added Term " + term.Name);
+            }
 
-        private void TotalReset()
-        {
-            termsList.Clear();
+            if (scroller != null)
+            {
+                scroller.ScrollToAsync(0, 0, false);
+            }
+
+            base.OnAppearing();
+
+
         }
 
         //private void runAlerts()

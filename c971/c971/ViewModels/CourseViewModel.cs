@@ -1,6 +1,7 @@
 ﻿using c971.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using Xamarin.Forms;
 
@@ -8,37 +9,26 @@ namespace c971.ViewModels
 {
     public class CourseViewModel : BaseViewModel
     {
-        private Course _course;
-
-        public Course Course
-        {
-            get => _course;
-            set
-            {
-                _course = value;
-                OnPropertyChanged(); // Notify UI of property change
-            }
-        }
-
-        public Command SaveCommand { get; }
-        public Command DeleteCommand { get; }
+        public ObservableCollection<Assessment> Assessments { get; set; }
 
         public CourseViewModel()
         {
-            Course = new Course(); // Initialize with a new course
-            SaveCommand = new Command(SaveCourse);
-            DeleteCommand = new Command(DeleteCourse);
+            Assessments = new ObservableCollection<Assessment>();
         }
 
-        private void SaveCourse()
+        public CourseViewModel(Course course)
         {
-            // Logic to save the course using the data service
+            SelectedCourse = course;
+            Assessments = new ObservableCollection<Assessment>();
         }
 
-        private void DeleteCourse()
-        {
-            // Logic to delete the course using the data service
-        }
+        public Course SelectedCourse { get; set; }
+        public string CourseName { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public string Status { get; set; }
+        public string InstructorName { get; set; }
+        public string InstructorPhone { get; set; }
+        public string InstructorEmail { get; set; }
     }
-
 }
