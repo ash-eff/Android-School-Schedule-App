@@ -30,33 +30,30 @@
                         <Label Text="{Binding SelectedTerm.EndDate, StringFormat='{0:d}'}" FontSize="16" />
                     </StackLayout>
                     <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
+                </StackLayout>
 
-                    <ListView x:Name="listView"
-                              ItemsSource="{Binding coursesList}"
-                              SelectionMode="Single"
-                              SelectedItem="{Binding SelectedAssessment, Mode=TwoWay}"
-                              ItemSelected="OnCourseSelected"
-                              RowHeight="50">
-
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Frame BorderColor="Black" CornerRadius="5" Padding="5" Margin="5">
-                                        <StackLayout>
-                                            <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="40"/>
-                                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                                <Label Text="Start: " VerticalTextAlignment="Center" HeightRequest="30"/>
-                                                <Label Text="{Binding StartDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
-                                                <Label Text=" - " VerticalTextAlignment="Center" HeightRequest="30"/>
-                                                <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
-                                            </StackLayout>
-                                        </StackLayout>
-                                    </Frame>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-
+                <StackLayout>
+                    <BindableLayout.ItemsSource>
+                        <Binding Path="coursesList" />
+                    </BindableLayout.ItemsSource>
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="Black" CornerRadius="5" Padding="5" Margin="5">
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="40"/>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                        <Label Text="Start: " VerticalTextAlignment="Center" HeightRequest="30"/>
+                                        <Label Text="{Binding StartDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
+                                        <Label Text=" - " VerticalTextAlignment="Center" HeightRequest="30"/>
+                                        <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnCourseTapped" CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
                 </StackLayout>
 
                 <!-- Line separator -->

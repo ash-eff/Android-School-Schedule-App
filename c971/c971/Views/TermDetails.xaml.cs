@@ -18,7 +18,7 @@ namespace c971.Views
     {
         public AcademicTerm SelectedTerm { get; set; }
 
-        public List<Course> coursesList = new List<Course>();
+        public ObservableCollection<Course> coursesList { get; set; } = new ObservableCollection<Course>();
 
         public TermDetails(AcademicTerm term)
         {
@@ -27,9 +27,9 @@ namespace c971.Views
             BindingContext = this;
         }
 
-        private async void OnCourseSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void OnCourseTapped(object sender, EventArgs e)
         {
-            if (e.SelectedItem is Course selectedCourse && selectedCourse != null)
+            if (e is TappedEventArgs tappedEventArgs && tappedEventArgs.Parameter is Course selectedCourse)
             {
                 Console.WriteLine("selected course name is " + selectedCourse.Name);
                 var courseDetailsPage = new CourseDetails(selectedCourse);
@@ -73,9 +73,13 @@ namespace c971.Views
 
         protected override void OnAppearing()
         {
-            //AdoNetDatabaseService.TableInformation();
-            coursesList = AdoNetDatabaseService.GetCourseTableAsListForTerm(SelectedTerm);
-            listView.ItemsSource = coursesList;
+            coursesList.Clear(); // Clear the previous data
+            var newCoursesList = AdoNetDatabaseService.GetCourseTableAsListForTerm(SelectedTerm);
+            foreach (var course in newCoursesList)
+            {
+                coursesList.Add(course);
+            }
+
             base.OnAppearing();
         }
     }
