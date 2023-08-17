@@ -1,0 +1,52 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="c971.Views.EditCourse">
+    <ContentPage.Resources>
+        <Style x:Key="DropdownPickerStyle" TargetType="Picker">
+            <Setter Property="BackgroundColor" Value="White" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Edit Course"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   TextColor="Black"/>
+
+            <Label Text="Course Name:" FontSize="16" />
+            <Entry x:Name="editedNameEntry" />
+
+            <Label Text="Start Date:" FontSize="16" />
+            <DatePicker x:Name="datePickerStartDate" />
+
+            <Label Text="End Date:" FontSize="16" />
+            <DatePicker x:Name="datePickerEndDate" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Picker x:Name="courseStatusPicker"
+                            Title="Select Course Status"
+                            TitleColor="Black"
+                            ItemsSource="{Binding CourseStatusOptions}"
+                            Style="{StaticResource DropdownPickerStyle}" 
+                            HeightRequest="40" />
+                <Label Grid.Column="1" Text="▼" VerticalOptions="Center" HorizontalOptions="End" FontSize="16" TextColor="Black" />
+            </Grid>
+
+            <Label Text="Instructor Name:" FontSize="16" />
+            <Entry x:Name="editedInstructorNameEntry" />
+
+            <Label Text="Instructor Phone:" FontSize="16" />
+            <Entry x:Name="editedPhoneEntry" />
+
+            <Label Text="Instructor Email:" FontSize="16" />
+            <Entry x:Name="editedEmailEntry" />
+
+            <Button Text="Save" Clicked="OnSaveClicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

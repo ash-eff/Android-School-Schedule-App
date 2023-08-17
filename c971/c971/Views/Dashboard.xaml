@@ -1,0 +1,57 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:c971.Models"
+             x:Class="c971.Views.Dashboard">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:IsNotNullConverter x:Key="IsNotNullConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Term Tracker"
+                   FontSize="40"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" 
+                   TextColor="Black"/>
+            <Label Text="Click a term to View/Edit/Delete"
+                   FontSize="15"
+                   HorizontalOptions="Center" 
+                   TextColor="Black"/>
+
+            <ListView x:Name="listView"
+                      ItemsSource="{Binding AcademicTerms}"
+                      SelectionMode="Single"
+                      SelectedItem="{Binding SelectedTerm, Mode=TwoWay}"
+                      ItemSelected="OnTermSelected"
+                      RowHeight="100">
+            
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame BorderColor="Black" CornerRadius="5" Padding="5" Margin="5">
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="40"/>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                        <Label Text="Start: " VerticalTextAlignment="Center" HeightRequest="30"/>
+                                        <Label Text="{Binding StartDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
+                                        <Label Text=" - " VerticalTextAlignment="Center" HeightRequest="30"/>
+                                        <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+
+
+
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Add Term" Clicked="OnAddTerm_Clicked" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
