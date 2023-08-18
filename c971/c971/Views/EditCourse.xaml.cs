@@ -34,6 +34,7 @@ namespace c971.Views
             ViewModel.EditedInstructorPhone = editedPhoneEntry.Text;
             ViewModel.EditedInstructorEmail = editedEmailEntry.Text;
             ViewModel.EditedNotes = editedNotes.Text;
+            ViewModel.EditedGetNotifications = editedNotificationSwitch.IsToggled;
 
             Course updatedCourse = ViewModel.UpdateCourse();
 

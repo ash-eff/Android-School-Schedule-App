@@ -28,6 +28,7 @@ namespace c971.ViewModels
             InstructorPhone = course.InstructorPhone;
             InstructorEmail = course.InstructorEmail;
             CourseNotes = course.Notes;
+            GetNotified = course.GetNotified;
         }
 
         public string CourseDetailsText
@@ -52,5 +53,6 @@ namespace c971.ViewModels
         public string InstructorPhone { get; set; }
         public string InstructorEmail { get; set; }
         public string CourseNotes { get; set; }
+        public bool GetNotified { get; set; }
     }
 }

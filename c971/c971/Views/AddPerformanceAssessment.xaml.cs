@@ -1,5 +1,6 @@
 ﻿using c971.Models;
 using c971.Services;
+using c971.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,11 @@ using Xamarin.Forms.Xaml;
 namespace c971.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddAssessment : ContentPage
+    public partial class AddPerformanceAssessment : ContentPage
     {
         private Course Course { get; set; }
-        public AddAssessment(Course course)
+
+        public AddPerformanceAssessment(Course course)
         {
             InitializeComponent();
             Course = course;
@@ -24,13 +26,16 @@ namespace c971.Views
 
         private async void OnSaveAssessmentClicked(object sender, EventArgs e)
         {
-            Assessment newAssessment = new Assessment
+            AssessmentViewModel newAssessmentViewModel = new AssessmentViewModel
             {
                 Name = assessmentNameEntry.Text,
                 StartDate = assessmentStartDatePicker.Date,
                 EndDate = assessmentEndDatePicker.Date,
-                CourseId = Course.Id
+                CourseId = Course.Id,
+                Type = AssessmentViewModel.AssessmentType.Performance
             };
+
+            Assessment newAssessment = newAssessmentViewModel.CreateAssessment();
 
             AdoNetDatabaseService.SaveAssessment(newAssessment);
 

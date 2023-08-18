@@ -38,9 +38,13 @@ namespace c971.Views
             await Navigation.PushAsync(new EditCourse(ViewModel.SelectedCourse));
         }
 
-        private async void OnAddAssessmentClicked(object sender, EventArgs e)
+        private async void OnAddPerformanceAssessmentClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddAssessment(ViewModel.SelectedCourse));
+            await Navigation.PushAsync(new AddPerformanceAssessment(ViewModel.SelectedCourse));
+        }
+        private async void OnAddObjectiveAssessmentClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddObjectiveAssessment(ViewModel.SelectedCourse));
         }
 
         private async void OnDeleteClicked(object sender, EventArgs e)
@@ -52,7 +56,6 @@ namespace c971.Views
             }
             else
             {
-                // Navigate back to the Dashboard page
                 AdoNetDatabaseService.RemoveCourse(ViewModel.SelectedCourse);
                 await Navigation.PopAsync();
             }

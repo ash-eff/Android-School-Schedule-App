@@ -38,14 +38,14 @@
                             </BindableLayout.ItemsSource>
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame BorderColor="Black" CornerRadius="5" Padding="5" Margin="5">
+                                    <Frame BorderColor="Black" BackgroundColor="{x:Static app:App.Background}" CornerRadius="5" Padding="5" Margin="1">
                                         <StackLayout>
-                                            <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="40"/>
+                                            <Label Text="{Binding Name}" FontSize="25" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="30"/>
                                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                                <Label Text="Start: " VerticalTextAlignment="Center" HeightRequest="30"/>
-                                                <Label Text="{Binding StartDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
-                                                <Label Text=" - " VerticalTextAlignment="Center" HeightRequest="30"/>
-                                                <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
+                                                <Label Text="Start: " VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                <Label Text="{Binding StartDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                <Label Text="End: " VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="20"/>
                                             </StackLayout>
                                         </StackLayout>
                                         <Frame.GestureRecognizers>

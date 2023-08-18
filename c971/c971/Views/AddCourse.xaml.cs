@@ -38,7 +38,8 @@ namespace c971.Views
                 AddedInstructorPhone = instructorPhoneEntry.Text,
                 AddedInstructorEmail = instructorEmailEntry.Text,
                 AddedTermId = Term.Id,
-                AddedNotes = notesEditor.Text
+                AddedNotes = notesEditor.Text,
+                AddedGetNotified = notificationSwitch.IsToggled
             };
 
             Course newCourse = newCourseViewModel.CreateCourse();

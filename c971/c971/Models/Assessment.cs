@@ -13,5 +13,14 @@ namespace c971.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int CourseId { get; set; }
+
+        public AssessmentType Type { get; set; }
+        public bool GetNotified { get; set; }
+
+        public enum AssessmentType
+        {
+            Objective,
+            Performance
+        }
     }
 }

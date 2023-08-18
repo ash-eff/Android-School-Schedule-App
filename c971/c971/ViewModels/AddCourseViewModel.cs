@@ -7,7 +7,12 @@ namespace c971.ViewModels
 {
     public class AddCourseViewModel : BaseViewModel
     {
-        //public Course SelectedCourse { get; set; }
+        public AddCourseViewModel()
+        {
+            // Set the default value for AddedStatus
+            AddedStatus = "Not Started";
+        }
+
         public string AddedName { get; set; }
         public string AddedCourseName { get; set; }
         public DateTime AddedStartDate { get; set; }
@@ -18,6 +23,7 @@ namespace c971.ViewModels
         public string AddedInstructorEmail { get; set; }
         public int AddedTermId { get; set; }
         public string AddedNotes { get; set; }
+        public bool AddedGetNotified { get; set; }
 
         public List<string> CourseStatusOptions { get; } = new List<string>
         {
@@ -38,7 +44,8 @@ namespace c971.ViewModels
                 InstructorPhone = AddedInstructorPhone,
                 InstructorEmail = AddedInstructorEmail,
                 TermId = AddedTermId,
-                Notes = AddedNotes
+                Notes = AddedNotes,
+                GetNotified = AddedGetNotified
             };
 
             return newCourse;

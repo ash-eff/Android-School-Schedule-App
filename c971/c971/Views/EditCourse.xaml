@@ -59,8 +59,12 @@
             <Label Text="Instructor Email:" FontSize="16" />
             <Entry x:Name="editedEmailEntry" Text="{Binding EditedInstructorEmail}" />
 
+            <Label Text="Notifications:" FontSize="16" FontAttributes="Bold"/>
+            <Switch x:Name="editedNotificationSwitch" IsToggled="{Binding EditedGetNotifications}" />
+
             <Label Text="Course Notes:" FontSize="16" FontAttributes="Bold"/>
             <Editor x:Name="editedNotes" HeightRequest="100" Text="{Binding EditedNotes}" />
+
 
 
                 </StackLayout>

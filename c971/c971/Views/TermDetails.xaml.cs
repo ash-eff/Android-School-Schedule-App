@@ -74,7 +74,7 @@ namespace c971.Views
         protected override void OnAppearing()
         {
             coursesList.Clear(); // Clear the previous data
-            var newCoursesList = AdoNetDatabaseService.GetCourseTableAsListForTerm(SelectedTerm);
+            var newCoursesList = AdoNetDatabaseService.GetCourseTableAsListForTermId(SelectedTerm.Id);
             foreach (var course in newCoursesList)
             {
                 coursesList.Add(course);

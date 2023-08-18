@@ -19,55 +19,99 @@
                 <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
 
                 <StackLayout Margin="20,0,20,0" Padding="0">
-                    <StackLayout Margin="0,0,0,0">
-                        <Label Text="Course Name:" FontSize="16" FontAttributes="Bold"/>
-                            <Label Text="{Binding CourseName}" FontSize="16" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
+                        <StackLayout Margin="20,0,20,0" Padding="0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Course Name:" FontSize="16" FontAttributes="Bold" />
+                                <Label Text="{Binding CourseName}" Grid.Column="1" FontSize="16" />
+                            </Grid>
+                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
 
-                    <StackLayout Margin="0,0,0,0">
-                        <Label Text="Start Date:" FontSize="16" FontAttributes="Bold"/>
-                        <Label Text="{Binding StartDate, StringFormat='{0:d}'}" FontSize="16" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Start Date:" FontSize="16" FontAttributes="Bold" />
+                                <Label Text="{Binding StartDate, StringFormat='{0:d}'}" Grid.Column="1" FontSize="16" />
+                            </Grid>
+                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
 
-                    <StackLayout Margin="0,0,0,0">
-                        <Label Text="End Date:" FontSize="16" FontAttributes="Bold"/>
-                        <Label Text="{Binding EndDate, StringFormat='{0:d}'}" FontSize="16" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="End Date:" FontSize="16" FontAttributes="Bold" />
+                                <Label Text="{Binding EndDate, StringFormat='{0:d}'}" Grid.Column="1" FontSize="16" />
+                            </Grid>
+                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
 
-                    <StackLayout Margin="0,0,0,0">
-                        <Label Text="Course Status:" FontSize="16" FontAttributes="Bold"/>
-                        <Label Text="{Binding Status}" FontSize="16" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Course Status:" FontSize="16" FontAttributes="Bold" />
+                                <Label Text="{Binding Status}" Grid.Column="1" FontSize="16" />
+                            </Grid>
+                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
 
-                    <StackLayout Margin="0,0,0,0">
-                        <Label Text="Instructor Name:" FontSize="16" FontAttributes="Bold"/>
-                        <Label Text="{Binding InstructorName}" FontSize="16" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Instructor Name:" FontSize="16" FontAttributes="Bold" />
+                                <Label Text="{Binding InstructorName}" Grid.Column="1" FontSize="16" />
+                            </Grid>
+                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
 
-                    <StackLayout Margin="0,0,0,0">
-                        <Label Text="Instructor Phone:" FontSize="16" FontAttributes="Bold"/>
-                        <Label Text="{Binding InstructorPhone}" FontSize="16" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Instructor Phone:" FontSize="16" FontAttributes="Bold" />
+                                <Label Text="{Binding InstructorPhone}" Grid.Column="1" FontSize="16" />
+                            </Grid>
+                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
 
-                    <StackLayout Margin="0,0,0,0">
-                        <Label Text="Instructor Email:" FontSize="16" FontAttributes="Bold"/>
-                        <Label Text="{Binding InstructorEmail}" FontSize="16" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Instructor Email:" FontSize="16" FontAttributes="Bold" />
+                                <Label Text="{Binding InstructorEmail}" Grid.Column="1" FontSize="16" />
+                            </Grid>
+                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
 
-                    <StackLayout Margin="0,10,0,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Notifications:" FontSize="16" FontAttributes="Bold" />
+                                <Switch Grid.Column="1" IsToggled="{Binding GetNotified}" IsEnabled="false" />
+                            </Grid>
+                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+
+                        </StackLayout>
+
+
+                        <StackLayout Margin="0,10,0,0">
                         <Label Text="Course Notes:" FontSize="16" FontAttributes="Bold"/>
                             <Label Text="{Binding CourseNotes}" FontSize="16" />
                     </StackLayout>
                     
                     <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
-                    </StackLayout>
+
+
+                </StackLayout>
 
                 <Frame BorderColor="Black" CornerRadius="5" Padding="10" Margin="10" BackgroundColor="{x:Static app:App.ContainerColor}">
                     <StackLayout>
@@ -82,15 +126,16 @@
                             </BindableLayout.ItemsSource>
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <Frame BorderColor="Black" CornerRadius="5" Padding="5" Margin="5">
+                                        <Frame BorderColor="Black" BackgroundColor="{x:Static app:App.Background}" CornerRadius="5" Padding="5" Margin="5">
                                         <StackLayout>
-                                            <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="40"/>
+                                            <Label Text="{Binding Name}" FontSize="15" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="30"/>
                                             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                                <Label Text="Start: " VerticalTextAlignment="Center" HeightRequest="30"/>
-                                                <Label Text="{Binding StartDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
-                                                <Label Text=" - " VerticalTextAlignment="Center" HeightRequest="30"/>
-                                                <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="30"/>
-                                            </StackLayout>
+                                                <Label Text="Start: " VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                <Label Text="{Binding StartDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                <Label Text="End: " VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                <Label Text="{Binding Type}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="20"/>
+                                                </StackLayout>
                                         </StackLayout>
                                         <Frame.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="OnAssessmentTapped" CommandParameter="{Binding .}" />
@@ -99,12 +144,14 @@
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
-                        <Button Text="Add Assessment" Clicked="OnAddAssessmentClicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White"/>
+                        
                     </StackLayout>
                 </Frame>
             </StackLayout>
         </ScrollView>
             <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+            <Button Text="Add Performance Assessment" Clicked="OnAddPerformanceAssessmentClicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White"/>
+            <Button Text="Add Objective Assessment" Clicked="OnAddObjectiveAssessmentClicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White"/>
             <Button Text="Edit Course" Clicked="OnEditClicked" BackgroundColor="{x:Static app:App.EditColor}" TextColor="White"/>
             <Button Text="Delete Course" Clicked="OnDeleteClicked" BackgroundColor="{x:Static app:App.DeleteColor}" TextColor="White" />
         </StackLayout>

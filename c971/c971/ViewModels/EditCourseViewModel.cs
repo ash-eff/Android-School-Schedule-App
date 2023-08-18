@@ -22,6 +22,7 @@ namespace c971.ViewModels
             EditedInstructorPhone = course.InstructorPhone;
             EditedInstructorEmail = course.InstructorEmail;
             EditedNotes = course.Notes;
+            EditedGetNotifications = course.GetNotified;
         }
         public Course SelectedCourse { get; set; }
         public string EditedCourseName { get; set; }
@@ -32,6 +33,7 @@ namespace c971.ViewModels
         public string EditedInstructorPhone { get; set; }
         public string EditedInstructorEmail { get; set; }
         public string EditedNotes { get; set; }
+        public bool EditedGetNotifications { get; set; }
 
         public Course UpdateCourse()
         {
@@ -43,6 +45,7 @@ namespace c971.ViewModels
             SelectedCourse.InstructorPhone = EditedInstructorPhone;
             SelectedCourse.InstructorEmail = EditedInstructorEmail;
             SelectedCourse.Notes = EditedNotes;
+            SelectedCourse.GetNotified = EditedGetNotifications;
             return SelectedCourse;
         }
 

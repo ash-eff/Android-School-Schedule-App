@@ -1,11 +1,11 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:app="clr-namespace:c971" 
-             x:Class="c971.Views.AddAssessment"
+             x:Class="c971.Views.AddObjectiveAssessment"
              BackgroundColor="{x:Static app:App.Background}">
     <ContentPage.Content>
         <StackLayout Margin="10" Spacing="1">
-            <Label Text="Add Assessment"
+            <Label Text="Add Objective Assessment"
                    FontSize="30"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"

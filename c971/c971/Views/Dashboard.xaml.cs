@@ -23,9 +23,28 @@ namespace c971.Views
             InitializeComponent();
             ViewModel = new AcademicTermViewModel();
             BindingContext = ViewModel;
-            
             //TotalReset();
-            
+        }
+
+        private void CheckNotifications()
+        {
+            var courseList = AdoNetDatabaseService.GetAllCourses();
+            var notifyRandom = new Random();
+            var notifyId = notifyRandom.Next(1000);
+            foreach (Course course in courseList)
+            {
+                if (course.GetNotified == true)
+                {
+                    if (course.StartDate == DateTime.Today)
+                    {
+                        CrossLocalNotifications.Current.Show("Notice", $"{ course.Name} begins today!", notifyId);
+                    }
+                    else if (course.EndDate == DateTime.Today)
+                    {
+                        CrossLocalNotifications.Current.Show("Notice", $"{ course.Name} ends today.", notifyId);
+                    }
+                }
+            }
         }
 
         private async void OnAddTerm_Clicked(object sender, EventArgs e)
@@ -58,6 +77,12 @@ namespace c971.Views
             }
 
             base.OnAppearing();
+            if (firstRun)
+            {
+                CheckNotifications();
+                firstRun = false;
+            }
+
 
 
         }

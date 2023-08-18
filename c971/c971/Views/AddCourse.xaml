@@ -26,6 +26,7 @@
                         <Label Text="End Date:" FontSize="16" FontAttributes="Bold"/>
                         <DatePicker x:Name="courseEndDatePicker" HeightRequest="40" />
 
+                        <Label Text="Course Status:" FontSize="16" FontAttributes="Bold"/>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
@@ -35,6 +36,7 @@
                                 Title="Select Course Status"
                                 TitleColor="Black"
                                 ItemsSource="{Binding CourseStatusOptions}"
+                                SelectedItem="{Binding AddedStatus}"
                                 Style="{StaticResource DropdownPickerStyle}" 
                                 HeightRequest="40" />
                             <Label Grid.Column="1" Text="▼" VerticalOptions="Center" HorizontalOptions="End" FontSize="16" TextColor="Black" />
@@ -48,10 +50,12 @@
 
                         <Label Text="Instructor Email:" FontSize="16" FontAttributes="Bold"/>
                         <Entry x:Name="instructorEmailEntry" HeightRequest="40" />
+                        
+                        <Label Text="Notifications:" FontSize="16" FontAttributes="Bold"/>
+                        <Switch x:Name="notificationSwitch" IsToggled="false" />
 
                         <Label Text="Course Notes:" FontSize="16" FontAttributes="Bold"/>
                         <Editor x:Name="notesEditor" HeightRequest="100" Placeholder="Add Notes..." />
-
 
                     </StackLayout>
                 </StackLayout>

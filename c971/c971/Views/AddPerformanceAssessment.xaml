@@ -1,0 +1,30 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app="clr-namespace:c971" 
+             x:Class="c971.Views.AddPerformanceAssessment"
+             BackgroundColor="{x:Static app:App.Background}">
+    <ContentPage.Content>
+        <StackLayout Margin="10" Spacing="1">
+            <Label Text="Add Performance Assessment"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   TextColor="Black"/>
+
+            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+
+            <StackLayout Margin="20,0,20,0">
+                <Label Text="Assessment Name:" FontSize="16" />
+                <Entry x:Name="assessmentNameEntry" HeightRequest="40" />
+
+                <Label Text="Start Date:" FontSize="16" />
+                <DatePicker x:Name="assessmentStartDatePicker" HeightRequest="40" />
+
+                <Label Text="End Date:" FontSize="16" />
+                <DatePicker x:Name="assessmentEndDatePicker" HeightRequest="40" />
+
+                <Button Text="Save Assessment" Clicked="OnSaveAssessmentClicked" BackgroundColor="{x:Static app:App.AddColor}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -117,6 +117,7 @@ namespace c971.Services
             }
         }
 
+
         public static List<AcademicTerm> GetAcademicTermsTableAsList()
         {
             using (SQLiteConnection connection = new SQLiteConnection(App.dbPath))
@@ -125,21 +126,24 @@ namespace c971.Services
             }
         }
 
-        public static List<Course> GetCourseTableAsListForTerm(AcademicTerm term)
+        public static List<Course> GetCourseTableAsListForTermId(int Id)
         {
-            if (term == null)
-            {
-                Console.WriteLine("Term is null!");
-                return new List<Course>();
-            }
-
             using (SQLiteConnection connection = new SQLiteConnection(App.dbPath))
             {
                 var coursesForTerm = connection.Table<Course>()
-                                              .Where(course => course.TermId == term.Id)
+                                              .Where(course => course.TermId == Id)
                                               .ToList();
 
                 return coursesForTerm;
+            }
+        }
+
+        public static AcademicTerm GetAcedemicTermById(int termId)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(App.dbPath))
+            {
+                return connection.Table<AcademicTerm>()
+                                 .FirstOrDefault(course => course.Id == termId);
             }
         }
 
@@ -167,6 +171,14 @@ namespace c971.Services
                                               .ToList();
 
                 return assessmentsForCourse;
+            }
+        }
+
+        public static List<Course> GetAllCourses()
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(App.dbPath))
+            {
+                return connection.Table<Course>().ToList();
             }
         }
 
