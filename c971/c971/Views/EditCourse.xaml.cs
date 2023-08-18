@@ -15,37 +15,29 @@ namespace c971.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditCourse : ContentPage
     {
-        Course SelectedCourse { get; set; }
+        public EditCourseViewModel ViewModel { get; set; }
 
-        public EditCourse(EditCourseViewModel viewModel)
+        public EditCourse(Course course)
         {
             InitializeComponent();
-            SelectedCourse = viewModel.SelectedCourse;
-            PopulateFields();
-        }
-
-        private void PopulateFields()
-        {
-            editedNameEntry.Text = SelectedCourse.Name;
-            datePickerStartDate.Date = SelectedCourse.StartDate;
-            datePickerEndDate.Date = SelectedCourse.EndDate;
-            courseStatusPicker.SelectedItem = SelectedCourse.CourseStatus;
-            editedInstructorNameEntry.Text = SelectedCourse.InstructorName;
-            editedPhoneEntry.Text = SelectedCourse.InstructorPhone;
-            editedEmailEntry.Text = SelectedCourse.InstructorEmail;
+            ViewModel = new EditCourseViewModel(course);
+            BindingContext = ViewModel;
         }
 
         private async void OnSaveClicked(object sender, EventArgs e)
         {
-            SelectedCourse.Name = editedNameEntry.Text;
-            SelectedCourse.StartDate = datePickerStartDate.Date;
-            SelectedCourse.EndDate = datePickerEndDate.Date;
-            SelectedCourse.CourseStatus = courseStatusPicker.SelectedItem.ToString();
-            SelectedCourse.InstructorName = editedInstructorNameEntry.Text;
-            SelectedCourse.InstructorPhone = editedPhoneEntry.Text;
-            SelectedCourse.InstructorEmail = editedEmailEntry.Text;
+            ViewModel.EditedCourseName = editedNameEntry.Text;
+            ViewModel.EditedStartDate = datePickerStartDate.Date;
+            ViewModel.EditedEndDate = datePickerEndDate.Date;
+            ViewModel.EditedStatus = courseStatusPicker.SelectedItem.ToString();
+            ViewModel.EditedInstructorName = editedInstructorNameEntry.Text;
+            ViewModel.EditedInstructorPhone = editedPhoneEntry.Text;
+            ViewModel.EditedInstructorEmail = editedEmailEntry.Text;
+            ViewModel.EditedNotes = editedNotes.Text;
 
-            AdoNetDatabaseService.SaveCourse(SelectedCourse);
+            Course updatedCourse = ViewModel.UpdateCourse();
+
+            AdoNetDatabaseService.SaveCourse(updatedCourse);
 
             await DisplayAlert("Success", "Course saved successfully!", "OK");
 

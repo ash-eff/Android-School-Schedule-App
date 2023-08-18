@@ -5,6 +5,11 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using System.IO;
+using Xamarin.Forms.Platform.Android;
+using Android.Graphics.Drawables;
+using Android.Content;
+using Xamarin.Forms;
+using Android.Support.V4.Content;
 
 namespace c971.Droid
 {
@@ -22,6 +27,7 @@ namespace c971.Droid
             string completePath = Path.Combine(folderPath, fileName);
             LoadApplication(new App(completePath));
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

@@ -143,6 +143,15 @@ namespace c971.Services
             }
         }
 
+        public static Course GetCourseById(int courseId)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(App.dbPath))
+            {
+                return connection.Table<Course>()
+                                 .FirstOrDefault(course => course.Id == courseId);
+            }
+        }
+
         public static List<Assessment> GetAssessmentTableAsListForCourse(Course course)
         {
             if (course == null)

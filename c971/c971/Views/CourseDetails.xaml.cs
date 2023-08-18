@@ -16,11 +16,12 @@ namespace c971.Views
     public partial class CourseDetails : ContentPage
     {
         public CourseViewModel ViewModel { get; set; }
+        private Course workingCourse;
+        private int workingCourseId;
         public CourseDetails(Course course)
         {
             InitializeComponent();
-            ViewModel = new CourseViewModel(course);
-            BindingContext = ViewModel;
+            workingCourseId = course.Id;
         }
 
         private async void OnAssessmentTapped(object sender, EventArgs e)
@@ -34,19 +35,7 @@ namespace c971.Views
 
         private async void OnEditClicked(object sender, EventArgs e)
         {
-            EditCourseViewModel editTermViewModel = new EditCourseViewModel
-            {
-                SelectedCourse = ViewModel.SelectedCourse,
-                EditedCourseName = ViewModel.CourseName,
-                EditedStartDate = ViewModel.StartDate,
-                EditedEndDate = ViewModel.EndDate,
-                EditedStatus = ViewModel.Status,
-                EditedInstructorName = ViewModel.InstructorName,
-                EditedInstructorPhone = ViewModel.InstructorPhone,
-                EditedInstructorEmail = ViewModel.InstructorEmail
-            };
-            
-            await Navigation.PushAsync(new EditCourse(editTermViewModel));
+            await Navigation.PushAsync(new EditCourse(ViewModel.SelectedCourse));
         }
 
         private async void OnAddAssessmentClicked(object sender, EventArgs e)
@@ -71,6 +60,11 @@ namespace c971.Views
 
         protected override void OnAppearing()
         {
+            // these lines need to happen in on appearing so that when a course is update and the page pops back to this one, the updated course information will be added to the view model so the page can update
+            workingCourse = AdoNetDatabaseService.GetCourseById(workingCourseId);
+            ViewModel = new CourseViewModel(workingCourse);
+            BindingContext = ViewModel;
+
             var newAssessmentList = AdoNetDatabaseService.GetAssessmentTableAsListForCourse(ViewModel.SelectedCourse);
             ViewModel.Assessments.Clear();
             foreach (Assessment assessment in newAssessmentList)

@@ -5,6 +5,7 @@
              x:Class="c971.Views.Dashboard"
              BackgroundColor="{x:Static app:App.Background}">
 
+
     <ContentPage.BindingContext>
         <local:DashboardViewModel />
     </ContentPage.BindingContext>
@@ -13,7 +14,7 @@
         
         <ScrollView x:Name="scroller" VerticalOptions="FillAndExpand">
             <StackLayout Margin="0" Spacing="1">
-                <Label Text="Term Tracker"
+                <Label Text="Dashboard"
                    FontSize="40"
                    FontAttributes="Bold"
                    HorizontalOptions="Center" 

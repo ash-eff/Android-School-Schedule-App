@@ -1,5 +1,6 @@
 ﻿using c971.Models;
 using c971.Services;
+using c971.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,36 +16,32 @@ namespace c971.Views
     public partial class AddCourse : ContentPage
     {
         private AcademicTerm Term { get; set; }
-        public List<string> CourseStatusOptions { get; set; }
-        public List<string> PrepopulatedCourseNames { get; set; }
+        public AddCourseViewModel ViewModel { get; set; }
+
         public AddCourse(AcademicTerm term)
         {
             InitializeComponent();
+            ViewModel = new AddCourseViewModel();
             Term = term;
-
-            CourseStatusOptions = new List<string>
-        {
-            "Not Started",
-            "In Progress",
-            "Completed"
-        };
-
-            BindingContext = this;
+            BindingContext = ViewModel;
         }
 
         private async void OnSaveCourseClicked(object sender, EventArgs e)
         {
-            Course newCourse = new Course
+            AddCourseViewModel newCourseViewModel = new AddCourseViewModel
             {
-                Name = courseNameEntry.Text,
-                StartDate = courseStartDatePicker.Date,
-                EndDate = courseEndDatePicker.Date,
-                CourseStatus = courseStatusPicker.SelectedItem.ToString(),
-                InstructorName = instructorNameEntry.Text,
-                InstructorPhone = instructorPhoneEntry.Text,
-                InstructorEmail = instructorEmailEntry.Text,
-                TermId = Term.Id
+                AddedName = courseNameEntry.Text,
+                AddedStartDate = courseStartDatePicker.Date,
+                AddedEndDate = courseEndDatePicker.Date,
+                AddedStatus = courseStatusPicker.SelectedItem.ToString(),
+                AddedInstructorName = instructorNameEntry.Text,
+                AddedInstructorPhone = instructorPhoneEntry.Text,
+                AddedInstructorEmail = instructorEmailEntry.Text,
+                AddedTermId = Term.Id,
+                AddedNotes = notesEditor.Text
             };
+
+            Course newCourse = newCourseViewModel.CreateCourse();
 
             AdoNetDatabaseService.SaveCourse(newCourse);
             
