@@ -9,10 +9,10 @@
     <ContentPage.BindingContext>
         <local:DashboardViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
-        
-        <ScrollView x:Name="scroller" VerticalOptions="FillAndExpand">
+        <StackLayout>
+            <ScrollView x:Name="scroller" VerticalOptions="FillAndExpand">
             <StackLayout Margin="0" Spacing="1">
                 <Label Text="Dashboard"
                    FontSize="40"
@@ -55,10 +55,12 @@
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
-                        <Button Text="Add Term" Clicked="OnAddTerm_Clicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White"/>
+
                     </StackLayout>
                 </Frame>
             </StackLayout>
         </ScrollView>
+        <Button Text="Add Term" Clicked="OnAddTerm_Clicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

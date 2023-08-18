@@ -71,6 +71,20 @@ namespace c971.Views
             await Navigation.PushAsync(new AddCourse(SelectedTerm));
         }
 
+        private void OnToggleCoursesClicked(object sender, EventArgs e)
+        {
+            coursesSection.IsVisible = !coursesSection.IsVisible;
+            //addCourseButton.IsVisible = coursesSection.IsVisible;
+            if (coursesSection.IsVisible)
+            {
+                coursesButton.Text = "Hide Courses";
+            }
+            else
+            {
+                coursesButton.Text = "Show Courses";
+            }
+        }
+
         protected override void OnAppearing()
         {
             coursesList.Clear(); // Clear the previous data

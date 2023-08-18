@@ -1,35 +1,24 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:c971.ViewModels"
              xmlns:app="clr-namespace:c971" 
              x:Class="c971.Views.CourseDetails"
              BackgroundColor="{x:Static app:App.Background}">
 
     <ContentPage.Content>
         <StackLayout>
-        <ScrollView x:Name="scroller" VerticalOptions="FillAndExpand">
-            <StackLayout Margin="10" Spacing="1">
+            <ScrollView x:Name="scroller" VerticalOptions="FillAndExpand">
+                <StackLayout Margin="0" Spacing="1">
 
-                    <Label Text="{Binding CourseName, StringFormat='{0} Details'}"
-                       FontSize="40"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center" 
-                       TextColor="Black"/>
+                    <Label Text="{Binding CourseName}"
+                           FontSize="40"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center" 
+                           TextColor="Black"/>
 
-                <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+                    <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
 
-                <StackLayout Margin="20,0,20,0" Padding="0">
-                        <StackLayout Margin="20,0,20,0" Padding="0">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Label Text="Course Name:" FontSize="16" FontAttributes="Bold" />
-                                <Label Text="{Binding CourseName}" Grid.Column="1" FontSize="16" />
-                            </Grid>
-                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
-
+                    <StackLayout Margin="20,0,20,0" Padding="0">
+                        <StackLayout>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -65,6 +54,30 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
+                                <Label Text="Notifications:" FontSize="16" FontAttributes="Bold" />
+                                <Switch Grid.Column="1" IsToggled="{Binding GetNotified}" IsEnabled="false" />
+                            </Grid>
+                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" Spacing="0">
+                            <ImageButton Source="contact.png" Clicked="OnViewContactClicked" WidthRequest="30" HeightRequest="30"
+                 HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                            <ImageButton Source="note.png" Clicked="OnViewNotesClicked" WidthRequest="30" HeightRequest="30"
+                 HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                            <ImageButton Source="list.png" Clicked="OnToggleAssessmentsClicked" WidthRequest="30" HeightRequest="30"
+                 HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                            <ImageButton Source="add.png" Clicked="OnAddClicked" WidthRequest="30" HeightRequest="30"
+                 HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                        </StackLayout>
+
+
+                        <StackLayout x:Name="contactInfoStackLayout" IsVisible="False">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
                                 <Label Text="Instructor Name:" FontSize="16" FontAttributes="Bold" />
                                 <Label Text="{Binding InstructorName}" Grid.Column="1" FontSize="16" />
                             </Grid>
@@ -88,72 +101,61 @@
                                 <Label Text="Instructor Email:" FontSize="16" FontAttributes="Bold" />
                                 <Label Text="{Binding InstructorEmail}" Grid.Column="1" FontSize="16" />
                             </Grid>
-                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
-
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Label Text="Notifications:" FontSize="16" FontAttributes="Bold" />
-                                <Switch Grid.Column="1" IsToggled="{Binding GetNotified}" IsEnabled="false" />
-                            </Grid>
-                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
-
+                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
                         </StackLayout>
 
-
-                        <StackLayout Margin="0,10,0,0">
-                        <Label Text="Course Notes:" FontSize="16" FontAttributes="Bold"/>
+                        <StackLayout x:Name="notesInfoStackLayout" IsVisible="False">
+                            <Label Text="Course Notes:" FontSize="16" FontAttributes="Bold"/>
                             <Label Text="{Binding CourseNotes}" FontSize="16" />
-                    </StackLayout>
-                    
-                    <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
-
-
-                </StackLayout>
-
-                <Frame BorderColor="Black" CornerRadius="5" Padding="10" Margin="10" BackgroundColor="{x:Static app:App.ContainerColor}">
-                    <StackLayout>
-                        <Label Text="Available Assessments"
-                               FontSize="15"
-                               HorizontalOptions="Center" 
-                               TextColor="Black"/>
-
-                        <StackLayout>
-                            <BindableLayout.ItemsSource>
-                                <Binding Path="Assessments" />
-                            </BindableLayout.ItemsSource>
-                            <BindableLayout.ItemTemplate>
-                                <DataTemplate>
-                                        <Frame BorderColor="Black" BackgroundColor="{x:Static app:App.Background}" CornerRadius="5" Padding="5" Margin="5">
-                                        <StackLayout>
-                                            <Label Text="{Binding Name}" FontSize="15" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="30"/>
-                                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                                <Label Text="Start: " VerticalTextAlignment="Center" HeightRequest="20"/>
-                                                <Label Text="{Binding StartDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="20"/>
-                                                <Label Text="End: " VerticalTextAlignment="Center" HeightRequest="20"/>
-                                                <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="20"/>
-                                                <Label Text="{Binding Type}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="20"/>
-                                                </StackLayout>
-                                        </StackLayout>
-                                        <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnAssessmentTapped" CommandParameter="{Binding .}" />
-                                        </Frame.GestureRecognizers>
-                                    </Frame>
-                                </DataTemplate>
-                            </BindableLayout.ItemTemplate>
+                            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
                         </StackLayout>
-                        
+
+
+
+
+                        <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
                     </StackLayout>
-                </Frame>
-            </StackLayout>
-        </ScrollView>
-            <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
-            <Button Text="Add Performance Assessment" Clicked="OnAddPerformanceAssessmentClicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White"/>
-            <Button Text="Add Objective Assessment" Clicked="OnAddObjectiveAssessmentClicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White"/>
-            <Button Text="Edit Course" Clicked="OnEditClicked" BackgroundColor="{x:Static app:App.EditColor}" TextColor="White"/>
-            <Button Text="Delete Course" Clicked="OnDeleteClicked" BackgroundColor="{x:Static app:App.DeleteColor}" TextColor="White" />
+
+                    <Frame BorderColor="Black" CornerRadius="5" Padding="10" Margin="10" BackgroundColor="{x:Static app:App.ContainerColor}">
+                        <StackLayout>
+
+                            <StackLayout>
+                                <StackLayout x:Name="assessmentSection" IsVisible="False">
+                                    <BindableLayout.ItemsSource>
+                                        <Binding Path="Assessments" />
+                                    </BindableLayout.ItemsSource>
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Frame BorderColor="Black" BackgroundColor="{x:Static app:App.Background}" CornerRadius="5" Padding="5" Margin="5">
+                                                <StackLayout>
+                                                    <Label Text="{Binding Name}" FontSize="20" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="30"/>
+                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                                        <Label Text="Start: " VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                        <Label Text="{Binding StartDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                        <Label Text="End: " VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                        <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                        <Label Text="{Binding Type}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="20"/>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="OnAssessmentTapped" CommandParameter="{Binding .}" />
+                                                </Frame.GestureRecognizers>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <Button Text="Add Performance Assessment" Clicked="OnAddPerformanceAssessmentClicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White" />
+                            <Button Text="Add Objective Assessment" Clicked="OnAddObjectiveAssessmentClicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+
+                <Button Text="Edit Course" Clicked="OnEditClicked" BackgroundColor="{x:Static app:App.EditColor}" TextColor="White" />
+            <Button Text="Delete Term" Clicked="OnDeleteClicked" BackgroundColor="{x:Static app:App.DeleteColor}" TextColor="White" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

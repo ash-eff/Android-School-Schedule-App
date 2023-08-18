@@ -61,6 +61,28 @@ namespace c971.Views
             }
         }
 
+        private void OnToggleAssessmentsClicked(object sender, EventArgs e)
+        {
+            assessmentSection.IsVisible = !assessmentSection.IsVisible;
+        }
+
+        private async void OnAddClicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Course Notes", ViewModel.CourseNotes, "OK");
+        }
+
+        private async void OnViewNotesClicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Course Notes", ViewModel.CourseNotes, "OK");
+        }
+
+        private void OnViewContactClicked(object sender, EventArgs e)
+        {
+            contactInfoStackLayout.IsVisible = !contactInfoStackLayout.IsVisible;
+        }
+
+
+
         protected override void OnAppearing()
         {
             // these lines need to happen in on appearing so that when a course is update and the page pops back to this one, the updated course information will be added to the view model so the page can update
