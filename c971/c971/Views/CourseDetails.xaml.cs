@@ -21,6 +21,7 @@ namespace c971.Views
         public CourseDetails(Course course)
         {
             InitializeComponent();
+            Console.WriteLine(course);
             workingCourseId = course.Id;
         }
 
@@ -46,7 +47,6 @@ namespace c971.Views
         {
             await Navigation.PushAsync(new AddObjectiveAssessment(ViewModel.SelectedCourse));
         }
-
         private async void OnDeleteClicked(object sender, EventArgs e)
         {
             bool courseTerm = await DisplayAlert("Delete Course", "Are you sure you want to delete this Course?", "Yes", "No");
@@ -63,22 +63,34 @@ namespace c971.Views
 
         private void OnToggleAssessmentsClicked(object sender, EventArgs e)
         {
+            CloseAllHiddenSections();
             assessmentSection.IsVisible = !assessmentSection.IsVisible;
         }
 
-        private async void OnAddClicked(object sender, EventArgs e)
+        private void OnAddClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Course Notes", ViewModel.CourseNotes, "OK");
+            CloseAllHiddenSections();
+            addAssessmentMenu.IsVisible = !addAssessmentMenu.IsVisible;
         }
 
-        private async void OnViewNotesClicked(object sender, EventArgs e)
+        private void OnViewNotesClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Course Notes", ViewModel.CourseNotes, "OK");
+            CloseAllHiddenSections();
+            notesInfoStackLayout.IsVisible = !notesInfoStackLayout.IsVisible;
         }
 
         private void OnViewContactClicked(object sender, EventArgs e)
         {
+            CloseAllHiddenSections();
             contactInfoStackLayout.IsVisible = !contactInfoStackLayout.IsVisible;
+        }
+
+        private void CloseAllHiddenSections()
+        {
+            assessmentSection.IsVisible = false;
+            addAssessmentMenu.IsVisible = false;
+            notesInfoStackLayout.IsVisible = false;
+            contactInfoStackLayout.IsVisible = false;
         }
 
 

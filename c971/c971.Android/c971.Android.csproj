@@ -109,10 +109,16 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\add.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable\bell.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\contact.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\list.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\note.png" />

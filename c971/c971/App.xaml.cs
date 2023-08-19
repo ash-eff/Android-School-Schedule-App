@@ -31,8 +31,8 @@ namespace c971
             MainPage = navPage;
             dbPath = completePath;
 
-            //AdoNetDatabaseService.InitializeDatabase();
-            //PopulateDataBase(6);
+            AdoNetDatabaseService.InitializeDatabase();
+            PopulateDataBase(6);
         }
 
         private void PopulateDataBase(int numberOfTerms)

@@ -7,7 +7,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -32,7 +31,7 @@ namespace c971.Views
             if (e is TappedEventArgs tappedEventArgs && tappedEventArgs.Parameter is Course selectedCourse)
             {
                 Console.WriteLine("selected course name is " + selectedCourse.Name);
-                var courseDetailsPage = new CourseDetails(selectedCourse);
+                CourseDetails courseDetailsPage = new CourseDetails(selectedCourse);
 
                 await Navigation.PushAsync(courseDetailsPage);
             }
