@@ -17,9 +17,9 @@ namespace c971
         public static string dbPath;
         public static Color DeleteColor = Color.FromHex("#a0615f");
         public static Color EditColor = Color.FromHex("#5F9EA0");
-        public static Color AddColor = Color.FromHex("#3a7f98");
-        public static Color Background = Color.FromHex("#ece6df");
-        public static Color ContainerColor = Color.FromHex("#e2d9cf");
+        public static Color AddColor = Color.FromHex("#839bad");
+        public static Color Background = Color.FromHex("#f4f5f5");
+        public static Color ContainerColor = Color.FromHex("#e8ebea");
 
 
         public App(string completePath)
@@ -31,8 +31,8 @@ namespace c971
             MainPage = navPage;
             dbPath = completePath;
 
-            AdoNetDatabaseService.InitializeDatabase();
-            PopulateDataBase(6);
+            //AdoNetDatabaseService.InitializeDatabase();
+            //PopulateDataBase(6);
         }
 
         private void PopulateDataBase(int numberOfTerms)
