@@ -60,7 +60,8 @@
                 </Frame>
             </StackLayout>
         </ScrollView>
-        <Button Text="Add Term" Clicked="OnAddTerm_Clicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White"/>
+            <Button Text="Add Term" Clicked="OnAddTerm_Clicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

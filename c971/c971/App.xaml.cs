@@ -26,22 +26,29 @@ namespace c971
         public App(string completePath)
         {
             InitializeComponent();
+            dbPath = completePath;
+
+            if (!Application.Current.Properties.ContainsKey("IsFirstRun"))
+            {
+                AdoNetDatabaseService.InitializeDatabase();
+                PopulateDataBase(6, 6);
+
+                Application.Current.Properties["IsFirstRun"] = true;
+                Application.Current.SavePropertiesAsync();
+            }
 
             var dashBoard = new Dashboard();
             var navPage = new NavigationPage(dashBoard);
             MainPage = navPage;
-            dbPath = completePath;
 
             MessagingCenter.Subscribe<Application, string>(Current, "ShareCourseNotes", (sender, courseNotes) =>
             {
                 Sms.ComposeAsync(new SmsMessage(courseNotes, ""));
             });
-
-            AdoNetDatabaseService.InitializeDatabase();
-            PopulateDataBase(6, 6);
         }
 
-        private void PopulateDataBase(int numberOfTerms, int numberOfCourses)
+
+        public static void PopulateDataBase(int numberOfTerms, int numberOfCourses)
         {
             int termInitial = 0;
             int termOffset = 90;

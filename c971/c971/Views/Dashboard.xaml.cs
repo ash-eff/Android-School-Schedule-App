@@ -55,6 +55,7 @@ namespace c971.Views
             }
         }
 
+
         private async void OnAddTerm_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddTerm());
