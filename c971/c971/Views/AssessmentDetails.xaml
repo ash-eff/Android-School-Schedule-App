@@ -29,9 +29,11 @@
                             BackgroundColor="Transparent"
                             HorizontalOptions="Start">
                             <Image.Triggers>
+                                <!-- Icon designed by Freepik from www.freepik.com -->
                                 <DataTrigger TargetType="Image" Binding="{Binding GetNotified}" Value="True">
                                     <Setter Property="Source" Value="bell_blue.png" />
                                 </DataTrigger>
+                                <!-- Icon designed by Freepik from www.freepik.com -->
                                 <DataTrigger TargetType="Image" Binding="{Binding GetNotified}" Value="False">
                                     <Setter Property="Source" Value="bell_red.png" />
                                 </DataTrigger>

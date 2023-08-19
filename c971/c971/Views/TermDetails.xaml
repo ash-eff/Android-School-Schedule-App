@@ -46,8 +46,10 @@
                 
                     <StackLayout Orientation="Horizontal" Spacing="0">
 
+                        <!-- Icon designed by Freepik from www.freepik.com -->
                         <ImageButton Source="list.png" Clicked="OnToggleCourseClicked" WidthRequest="30" HeightRequest="30"
                                             HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                        <!-- Icon designed by Freepik from www.freepik.com -->
                         <ImageButton Source="add.png" Clicked="OnAddClicked" WidthRequest="30" HeightRequest="30"
                                             HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
 

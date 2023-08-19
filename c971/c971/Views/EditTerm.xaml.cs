@@ -29,6 +29,11 @@ namespace c971.Views
 
         private async void OnSaveClicked(object sender, EventArgs e)
         {
+            if (!IsValid())
+            {
+                return;
+            }
+
             SelectedTerm.Name = editedNameEntry.Text;
             SelectedTerm.StartDate = datePickerStartDate.Date;
             SelectedTerm.EndDate = datePickerEndDate.Date;
@@ -38,6 +43,23 @@ namespace c971.Views
             await DisplayAlert("Success", "Term saved successfully!", "OK");
 
             await Navigation.PopToRootAsync();
+        }
+
+        private bool IsValid()
+        {
+            if (string.IsNullOrWhiteSpace(editedNameEntry.Text))
+            {
+                DisplayAlert("Error", "Term name cannot be empty.", "OK");
+                return false;
+            }
+
+            if (datePickerEndDate.Date <= datePickerStartDate.Date)
+            {
+                DisplayAlert("Error", "End date cannot be before or on the same day as the start date.", "OK");
+                return false;
+            }
+
+            return true;
         }
     }
 }

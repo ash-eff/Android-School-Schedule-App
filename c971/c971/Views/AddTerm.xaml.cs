@@ -24,9 +24,8 @@ namespace c971.Views
 
         private async void OnSaveClicked(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(termNameEntry.Text))
+            if (!IsValid())
             {
-                await DisplayAlert("Error", "Term name cannot be empty.", "OK");
                 return;
             }
             
@@ -45,20 +44,21 @@ namespace c971.Views
             
         }
 
+        private bool IsValid()
+        {
+            if (string.IsNullOrWhiteSpace(termNameEntry.Text))
+            {
+                DisplayAlert("Error", "Term name cannot be empty.", "OK");
+                return false;
+            }
 
-        //private void OnCourseSelected(object sender, CheckedChangedEventArgs e)
-        //{
-        //    if (sender is CheckBox checkBox && checkBox.BindingContext is Course course)
-        //    {
-        //        if (e.Value)
-        //        {
-        //            SelectedCourses.Add(course);
-        //        }
-        //        else
-        //        {
-        //            SelectedCourses.Remove(course);
-        //        }
-        //    }
-        //}
+            if (endTimePicker.Date <= startTimePicker.Date)
+            {
+                DisplayAlert("Error", "End date cannot be before or on the same day as the start date.", "OK");
+                return false;
+            }
+
+            return true;
+        }
     }
 }

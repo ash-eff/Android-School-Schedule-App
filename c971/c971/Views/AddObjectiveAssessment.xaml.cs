@@ -26,6 +26,11 @@ namespace c971.Views
 
         private async void OnSaveAssessmentClicked(object sender, EventArgs e)
         {
+            if (!IsValid())
+            {
+                return;
+            }
+
             AssessmentViewModel newAssessmentViewModel = new AssessmentViewModel
             {
                 Name = assessmentNameEntry.Text,
@@ -44,6 +49,36 @@ namespace c971.Views
 
             await Navigation.PopAsync();
 
+        }
+
+        private bool IsValid()
+        {
+            if (string.IsNullOrWhiteSpace(assessmentNameEntry.Text))
+            {
+                DisplayAlert("Error", "Assessment name cannot be empty.", "OK");
+                return false;
+            }
+
+            Course workingCourse = Course;
+            if (assessmentStartDatePicker.Date < workingCourse.StartDate.Date)
+            {
+                DisplayAlert("Error", "Assessment start date cannot be before the course start date.", "OK");
+                return false;
+            }
+
+            if (assessmentEndDatePicker.Date > workingCourse.EndDate.Date)
+            {
+                DisplayAlert("Error", "Course end date cannot be after the term end date.", "OK");
+                return false;
+            }
+
+            if (assessmentEndDatePicker.Date <= assessmentStartDatePicker.Date)
+            {
+                DisplayAlert("Error", "End date cannot be before or on the same day as the start date.", "OK");
+                return false;
+            }
+
+            return true;
         }
     }
 }

@@ -70,7 +70,7 @@ namespace c971
                         StartDate = DateTime.Today.AddDays(courseInitial),
                         EndDate = DateTime.Today.AddDays(courseInitial + courseOffset),
                         InstructorName = "Ash Fischer",
-                        InstructorPhone = "555-555-555",
+                        InstructorPhone = "555-555-5555",
                         InstructorEmail = "afisc38@wgu.edu",
                         CourseStatus = "Not Started",
                         Notes = "These are placement course notes...",
