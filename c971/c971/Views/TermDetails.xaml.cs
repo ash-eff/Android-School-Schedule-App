@@ -36,6 +36,22 @@ namespace c971.Views
                 await Navigation.PushAsync(courseDetailsPage);
             }
         }
+        private void OnToggleCourseClicked(object sender, EventArgs e)
+        {
+            CloseAllHiddenSections();
+            courseSection.IsVisible = !courseSection.IsVisible;
+        }
+
+        private void OnAddClicked(object sender, EventArgs e)
+        {
+            CloseAllHiddenSections();
+            addCourseMenu.IsVisible = !addCourseMenu.IsVisible;
+        }
+        private void CloseAllHiddenSections()
+        {
+            courseSection.IsVisible = false;
+            addCourseMenu.IsVisible = false;
+        }
 
         private async void OnDeleteClicked(object sender, EventArgs e)
         {
@@ -68,20 +84,6 @@ namespace c971.Views
         private async void OnAddCourseClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddCourse(SelectedTerm));
-        }
-
-        private void OnToggleCoursesClicked(object sender, EventArgs e)
-        {
-            coursesSection.IsVisible = !coursesSection.IsVisible;
-            //addCourseButton.IsVisible = coursesSection.IsVisible;
-            if (coursesSection.IsVisible)
-            {
-                coursesButton.Text = "Hide Courses";
-            }
-            else
-            {
-                coursesButton.Text = "Show Courses";
-            }
         }
 
         protected override void OnAppearing()

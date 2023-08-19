@@ -23,6 +23,9 @@
                 <Label Text="End Date:" FontSize="16" />
                 <DatePicker x:Name="assessmentEndDatePicker" HeightRequest="40" />
 
+                <Label Text="Notifications:" FontSize="16" FontAttributes="Bold"/>
+                <Switch x:Name="notificationSwitch" IsToggled="false" />
+
                 <Button Text="Save Assessment" Clicked="OnSaveAssessmentClicked" BackgroundColor="{x:Static app:App.AddColor}"/>
             </StackLayout>
         </StackLayout>

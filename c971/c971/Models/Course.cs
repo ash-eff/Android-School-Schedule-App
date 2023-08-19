@@ -19,5 +19,11 @@ namespace c971.Models
         public int TermId { get; set; }
         public string Notes { get; set; }
         public bool GetNotified { get; set; }
+        public List<string> CourseStatusOptions { get; } = new List<string>
+        {
+            "Not Started",
+            "In Progress",
+            "Completed"
+        };
     }
 }

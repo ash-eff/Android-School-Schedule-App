@@ -92,7 +92,7 @@
                         <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
 
 
-                        <StackLayout x:Name="contactInfoStackLayout" IsVisible="True">
+                        <StackLayout x:Name="contactInfoStackLayout" IsVisible="False">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
@@ -137,7 +137,7 @@
                         </StackLayout>
 
 
-                        <Frame x:Name="assessmentSection" IsVisible="False" BorderColor="Black" CornerRadius="5" Padding="10" Margin="10" BackgroundColor="{x:Static app:App.ContainerColor}">
+                        <Frame x:Name="assessmentSection" IsVisible="True" BorderColor="Black" CornerRadius="5" Padding="10" Margin="10" BackgroundColor="{x:Static app:App.ContainerColor}">
                             <StackLayout>
                                 <StackLayout>
                                     <StackLayout >
@@ -173,7 +173,7 @@
             
 
             <Button Text="Edit Course" Clicked="OnEditClicked" BackgroundColor="{x:Static app:App.EditColor}" TextColor="White" />
-            <Button Text="Delete Term" Clicked="OnDeleteClicked" BackgroundColor="{x:Static app:App.DeleteColor}" TextColor="White" />
+            <Button Text="Delete Course" Clicked="OnDeleteClicked" BackgroundColor="{x:Static app:App.DeleteColor}" TextColor="White" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

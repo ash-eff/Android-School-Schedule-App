@@ -8,25 +8,16 @@
         <ScrollView x:Name="scroller" VerticalOptions="FillAndExpand" >
             <StackLayout Margin="0" Spacing="1">
 
-                <Label Text="Term Details"
-                       FontSize="40"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center" 
-                       TextColor="Black"/>
+                    <Label Grid.Column="1" Text="{Binding SelectedTerm.Name}"
+                            FontSize="40"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center" 
+                            VerticalOptions="Center"
+                            TextColor="Black"/>
 
-                <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
+                    <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,10,0,10"/>
 
                     <StackLayout Margin="20,0,20,0" Padding="0">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-
-                            <Label Grid.Column="0" Text="Term Name:" FontSize="16" FontAttributes="Bold"/>
-                            <Label Grid.Column="1" Text="{Binding SelectedTerm.Name}" FontSize="16" />
-                        </Grid>
-                        <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
 
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -48,48 +39,55 @@
                             <Label Grid.Column="0" Text="End Date:" FontSize="16" FontAttributes="Bold"/>
                             <Label Grid.Column="1" Text="{Binding SelectedTerm.EndDate, StringFormat='{0:d}'}" FontSize="16" />
                         </Grid>
+
+                    </StackLayout>
+
+                    <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
+                
+                    <StackLayout Orientation="Horizontal" Spacing="0">
+
+                        <ImageButton Source="list.png" Clicked="OnToggleCourseClicked" WidthRequest="30" HeightRequest="30"
+                                            HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
+                        <ImageButton Source="add.png" Clicked="OnAddClicked" WidthRequest="30" HeightRequest="30"
+                                            HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
+
+                    </StackLayout>
+
+                    <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
+
+                    <StackLayout x:Name="addCourseMenu" IsVisible="False">
+                        <Button Text="Add Course" Clicked="OnAddCourseClicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White" />
                         <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
                     </StackLayout>
 
 
-                    <Frame BorderColor="Black"  CornerRadius="5" Padding="10" Margin="10" BackgroundColor="{x:Static app:App.ContainerColor}">
+                    <Frame x:Name="courseSection" IsVisible="True" BorderColor="Black"  CornerRadius="5" Padding="10" Margin="10" BackgroundColor="{x:Static app:App.ContainerColor}">
                         <StackLayout>
-                            <Button x:Name="coursesButton" Text="Show Courses" Clicked="OnToggleCoursesClicked" BackgroundColor="{x:Static app:App.EditColor}" TextColor="Black" />
-                            
-                            <StackLayout>
-                                <StackLayout x:Name="coursesSection" IsVisible="False">
-                                    
+                            <BindableLayout.ItemsSource>
+                                <Binding Path="coursesList" />
+                            </BindableLayout.ItemsSource>
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BorderColor="Black" BackgroundColor="{x:Static app:App.Background}" CornerRadius="5" Padding="5" Margin="5">
+                                        <StackLayout>
+                                            <Label Text="{Binding Name}" FontSize="25" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="30"/>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                                <Label Text="Start: " VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                <Label Text="{Binding StartDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                <Label Text="End: " VerticalTextAlignment="Center" HeightRequest="20"/>
+                                                <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="20"/>
+                                            </StackLayout>
 
-                                    <BindableLayout.ItemsSource>
-                                        <Binding Path="coursesList" />
-                                    </BindableLayout.ItemsSource>
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <Frame BorderColor="Black" BackgroundColor="{x:Static app:App.Background}" CornerRadius="5" Padding="5" Margin="5">
-                                                <StackLayout>
-                                                    <Label Text="{Binding Name}" FontSize="25" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" HeightRequest="30"/>
-                                                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                                                        <Label Text="Start: " VerticalTextAlignment="Center" HeightRequest="20"/>
-                                                        <Label Text="{Binding StartDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="20"/>
-                                                        <Label Text="End: " VerticalTextAlignment="Center" HeightRequest="20"/>
-                                                        <Label Text="{Binding EndDate, StringFormat='{0:d}'}" VerticalTextAlignment="Center" HeightRequest="20"/>
-                                                    </StackLayout>
-                                                    
-                                                </StackLayout>
-                                                <Frame.GestureRecognizers>
-                                                    <TapGestureRecognizer Tapped="OnCourseTapped" CommandParameter="{Binding .}" />
-                                                </Frame.GestureRecognizers>
-                                                
-                                            </Frame>
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnCourseTapped" CommandParameter="{Binding .}" />
+                                        </Frame.GestureRecognizers>
 
-                                </StackLayout>
-                            </StackLayout>
-                            <Button Text="Add Course" Clicked="OnAddCourseClicked" BackgroundColor="{x:Static app:App.AddColor}" TextColor="White"/>
-
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
                         </StackLayout>
-                </Frame>
+                    </Frame>
 
 
 

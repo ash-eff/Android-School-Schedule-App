@@ -21,7 +21,6 @@ namespace c971.Views
         public CourseDetails(Course course)
         {
             InitializeComponent();
-            Console.WriteLine(course);
             workingCourseId = course.Id;
         }
 

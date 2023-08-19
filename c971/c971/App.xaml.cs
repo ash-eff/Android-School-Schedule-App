@@ -32,12 +32,11 @@ namespace c971
             dbPath = completePath;
 
             //AdoNetDatabaseService.InitializeDatabase();
-            //PopulateDataBase(6);
+            //PopulateDataBase(6, 6);
         }
 
-        private void PopulateDataBase(int numberOfTerms)
+        private void PopulateDataBase(int numberOfTerms, int numberOfCourses)
         {
-            int numberOfCourses = 6;
             int termInitial = 0;
             int termOffset = 90;
             int courseInitial = 0;
@@ -67,6 +66,7 @@ namespace c971
                         InstructorName = "Ash Fischer",
                         InstructorPhone = "555-555-555",
                         InstructorEmail = "afisc38@wgu.edu",
+                        CourseStatus = "Not Started",
                         GetNotified = true,
                         TermId = term.Id,
                     };
@@ -77,7 +77,7 @@ namespace c971
 
                     var objectiveAssessment = new Assessment
                     {
-                        Name = $"Objective Assessment {j}",
+                        Name = $"Assessment {j}",
                         StartDate = DateTime.Today.AddDays(objectiveInitial),
                         EndDate = DateTime.Today.AddDays(objectiveInitial + assessmentOffset),
                         Type = Assessment.AssessmentType.Objective,
@@ -91,7 +91,7 @@ namespace c971
 
                     var performaceAssessment = new Assessment
                     {
-                        Name = $"Performance Assessment {j}",
+                        Name = $"Assessment {j + 1}",
                         StartDate = DateTime.Today.AddDays(performanceInitial),
                         EndDate = DateTime.Today.AddDays(performanceInitial + assessmentOffset),
                         Type = Assessment.AssessmentType.Performance,

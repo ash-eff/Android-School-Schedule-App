@@ -31,6 +31,7 @@ namespace c971.Views
                 Name = assessmentNameEntry.Text,
                 StartDate = assessmentStartDatePicker.Date,
                 EndDate = assessmentEndDatePicker.Date,
+                GetNotified = notificationSwitch.IsToggled,
                 CourseId = Course.Id,
                 Type = AssessmentViewModel.AssessmentType.Performance
             };

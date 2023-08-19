@@ -16,14 +16,13 @@ namespace c971.Views
     public partial class AssessmentDetails : ContentPage
     {
         public AssessmentViewModel ViewModel { get; set; }
-        public Assessment SelectedAssessment;
+        private Assessment workingAssessment;
+        private int workingAssessmentId;
 
         public AssessmentDetails(Assessment assessment)
         {
             InitializeComponent();
-            SelectedAssessment = assessment;
-            ViewModel = new AssessmentViewModel(assessment);
-            BindingContext = ViewModel;
+            workingAssessmentId = assessment.Id;
         }
 
         private async void OnEditClicked(object sender, EventArgs e)
@@ -43,6 +42,23 @@ namespace c971.Views
                 AdoNetDatabaseService.RemoveAssessment(ViewModel.Assessment);
                 await Navigation.PopAsync();
             }
+        }
+
+
+        protected override void OnAppearing()
+        {
+            // these lines need to happen in on appearing so that when a course is update and the page pops back to this one, the updated assessment information will be added to the view model so the page can update
+            workingAssessment = AdoNetDatabaseService.GetAssessmentById(workingAssessmentId);
+            ViewModel = new AssessmentViewModel(workingAssessment);
+            BindingContext = ViewModel;
+
+            //if (scroller != null)
+            //{
+            //    scroller.ScrollToAsync(0, 0, false);
+            //}
+
+
+            base.OnAppearing();
         }
     }
 }

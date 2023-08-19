@@ -13,7 +13,6 @@ namespace c971.Views
 {
     public partial class Dashboard : ContentPage
     {
-        public List<Assessment> assessmentsList = new List<Assessment>();
         public AcademicTermViewModel ViewModel { get; set; }
 
         bool firstRun = true;
@@ -29,6 +28,7 @@ namespace c971.Views
         private void CheckNotifications()
         {
             var courseList = AdoNetDatabaseService.GetAllCourses();
+            var assessmentList = AdoNetDatabaseService.GetAllAssessments();
             var notifyRandom = new Random();
             var notifyId = notifyRandom.Next(1000);
             foreach (Course course in courseList)
@@ -44,6 +44,15 @@ namespace c971.Views
                         CrossLocalNotifications.Current.Show("Notice", $"{ course.Name} ends today.", notifyId);
                     }
                 }
+            }
+
+            foreach (Assessment assessment in assessmentList)
+            {
+                Console.WriteLine("________________________________________________________Assessment: " + assessment.Name);
+                //if (assessment.EndDate == DateTime.Today)
+                //{
+                //    CrossLocalNotifications.Current.Show("Notice", $"{assessment.Name} is due today.", notifyId);
+                //}
             }
         }
 

@@ -156,6 +156,15 @@ namespace c971.Services
             }
         }
 
+        public static Assessment GetAssessmentById(int assessmentId)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(App.dbPath))
+            {
+                return connection.Table<Assessment>()
+                                 .FirstOrDefault(assessment => assessment.Id == assessmentId);
+            }
+        }
+
         public static List<Assessment> GetAssessmentTableAsListForCourse(Course course)
         {
             if (course == null)
@@ -179,6 +188,14 @@ namespace c971.Services
             using (SQLiteConnection connection = new SQLiteConnection(App.dbPath))
             {
                 return connection.Table<Course>().ToList();
+            }
+        }
+
+        public static List<Assessment> GetAllAssessments()
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(App.dbPath))
+            {
+                return connection.Table<Assessment>().ToList();
             }
         }
 
