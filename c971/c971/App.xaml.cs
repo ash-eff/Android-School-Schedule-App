@@ -8,6 +8,7 @@ using c971.ViewModels;
 using c971.Models;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Xamarin.Essentials;
 
 namespace c971
 {
@@ -31,8 +32,13 @@ namespace c971
             MainPage = navPage;
             dbPath = completePath;
 
-            //AdoNetDatabaseService.InitializeDatabase();
-            //PopulateDataBase(6, 6);
+            MessagingCenter.Subscribe<Application, string>(Current, "ShareCourseNotes", (sender, courseNotes) =>
+            {
+                Sms.ComposeAsync(new SmsMessage(courseNotes, ""));
+            });
+
+            AdoNetDatabaseService.InitializeDatabase();
+            PopulateDataBase(6, 6);
         }
 
         private void PopulateDataBase(int numberOfTerms, int numberOfCourses)
@@ -67,6 +73,7 @@ namespace c971
                         InstructorPhone = "555-555-555",
                         InstructorEmail = "afisc38@wgu.edu",
                         CourseStatus = "Not Started",
+                        Notes = "These are placement course notes...",
                         GetNotified = true,
                         TermId = term.Id,
                     };

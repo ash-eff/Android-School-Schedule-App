@@ -128,6 +128,8 @@
                             <Label Text="Course Notes:" FontSize="16" FontAttributes="Bold"/>
                             <Label Text="{Binding CourseNotes}" FontSize="16" />
                             <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,2,0,2"/>
+                            <ImageButton Source="share.png" Clicked="OnShareNotesClicked" WidthRequest="30" HeightRequest="30"
+                                            HorizontalOptions="FillAndExpand" BackgroundColor="Transparent" />
                         </StackLayout>
 
                         <StackLayout x:Name="addAssessmentMenu" IsVisible="False">

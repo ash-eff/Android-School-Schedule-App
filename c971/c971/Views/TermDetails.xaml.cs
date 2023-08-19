@@ -41,7 +41,6 @@ namespace c971.Views
             CloseAllHiddenSections();
             courseSection.IsVisible = !courseSection.IsVisible;
         }
-
         private void OnAddClicked(object sender, EventArgs e)
         {
             CloseAllHiddenSections();
@@ -52,7 +51,6 @@ namespace c971.Views
             courseSection.IsVisible = false;
             addCourseMenu.IsVisible = false;
         }
-
         private async void OnDeleteClicked(object sender, EventArgs e)
         {
             bool deleteTerm = await DisplayAlert("Delete Term", "Are you sure you want to delete this Term?", "Yes", "No");
@@ -62,12 +60,10 @@ namespace c971.Views
             }
             else
             {
-                // Navigate back to the Dashboard page
                 AdoNetDatabaseService.RemoveAcademicTerm(SelectedTerm);
                 await Navigation.PopAsync();
             }
         }
-
         private async void OnEditClicked(object sender, EventArgs e)
         {
             EditTermViewModel editTermViewModel = new EditTermViewModel
@@ -80,12 +76,10 @@ namespace c971.Views
 
             await Navigation.PushAsync(new EditTerm(editTermViewModel));
         }
-
         private async void OnAddCourseClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddCourse(SelectedTerm));
         }
-
         protected override void OnAppearing()
         {
             coursesList.Clear(); // Clear the previous data

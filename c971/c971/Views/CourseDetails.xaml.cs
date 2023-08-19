@@ -60,6 +60,13 @@ namespace c971.Views
             }
         }
 
+        private void OnShareNotesClicked(object sender, EventArgs e)
+        {
+            string courseNotes = ViewModel.CourseNotes;
+            MessagingCenter.Send(Application.Current, "ShareCourseNotes", courseNotes);
+        }
+
+
         private void OnToggleAssessmentsClicked(object sender, EventArgs e)
         {
             CloseAllHiddenSections();

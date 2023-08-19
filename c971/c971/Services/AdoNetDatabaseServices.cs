@@ -61,6 +61,13 @@ namespace c971.Services
                 if (term.Id != 0)
                 {
                     connection.Delete(term);
+
+                    var coursesForTerm = GetCourseTableAsListForTermId(term.Id);
+                    Console.WriteLine(coursesForTerm);
+                    foreach (var course in coursesForTerm)
+                    {
+                        RemoveCourse(course);
+                    }
                 }
             }
         }
@@ -87,6 +94,12 @@ namespace c971.Services
                 if (course.Id != 0)
                 {
                     connection.Delete(course);
+
+                    var assessmentsForCourse = GetAssessmentTableAsListForCourse(course);
+                    foreach (var assessment in assessmentsForCourse)
+                    {
+                        connection.Delete(assessment);
+                    }
                 }
             }
         }
